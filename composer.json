@@ -1,7 +1,7 @@
 {
     "name": "greencheap/discord",
     "type": "greencheap-extension",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "Discord",
     "description": "Discord Webhook + Discord API",
     "license": "MIT",

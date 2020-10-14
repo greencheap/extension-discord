@@ -168,23 +168,26 @@ class DiscordMessage
      */
     public function toArray(): array
     {
-        return [
-            'embeds' => [
-                [
-                    'title' => $this->title,
-                    'type' => 'rich',
-                    'url' => $this->url ?? null,
-                    'image' => [
-                        'url' => $this->image ?? null
-                    ],
-                    'description' => $this->description,
-                    'color' => hexdec($this->color),
-                    'footer' => [
-                        'text' => $this->footer ?? null,
-                    ],
-                    'timestamp' => $this->timestamp,
-                ],
+        $data = [
+            'title' => $this->title,
+            'type' => 'rich',
+            'url' => $this->url ?? null,
+            'description' => $this->description,
+            'color' => hexdec($this->color),
+            'footer' => [
+                'text' => $this->footer ?? null,
             ],
+            'timestamp' => $this->timestamp,
+        ];
+
+        if($this->image){
+            $data['image'] = [
+                'url' => $this->image
+            ];
+        }
+
+        return [
+            'embeds' => $data,
         ];
     }
 
