@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GreenCheap 2.0.10.6-RC1 (greencheap/discord, messages)\n"
+"POT-Creation-Date: 2020-10-24 17:08+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Discord Webhook Settings"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Not Found Discord WebHook Uri"
+msgstr ""
+
+msgid "The document has been updated:"
+msgstr ""
+
+msgid "A new content has been updated to this document."
+msgstr ""
+
+msgid "The document has been created:"
+msgstr ""
+
+msgid "A new content has been created to this document."
+msgstr ""
+
+msgid "The package has been updated:"
+msgstr ""
+
+msgid "If you want to review what you wonder about package updates and other information, click on the title."
+msgstr ""
+
+msgid "The package has been created:"
+msgstr ""
+

@@ -1,6 +1,8 @@
 <?php
 
 use GreenCheap\Discord\Events\BlogListener;
+use GreenCheap\Discord\Events\DocsListener;
+use GreenCheap\Discord\Events\MarketplaceListener;
 
 return [
     'name' => 'discord',
@@ -15,6 +17,14 @@ return [
             'blogEvent' => [
                 'active' => false,
                 'title' => 'Blog Event'
+            ],
+            'docsEvent' => [
+                'active' => false,
+                'title' => 'Docs Event'
+            ],
+            'brainEvent' => [
+                'active' => false,
+                'title' => 'Brain Event'
             ]
         ]
     ],
@@ -24,7 +34,9 @@ return [
     'events' => [
         'boot' => function ($event, $app) {
             $app->subscribe(
-                new BlogListener($this)
+                new BlogListener($this),
+                new DocsListener($this),
+                new MarketplaceListener($this)
             );
         },
 

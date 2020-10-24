@@ -37,14 +37,14 @@ class BlogListener implements EventSubscriberInterface
         $description = $post->get('meta.og:description');
         if (!$description) {
             $description = strip_tags($post->excerpt ?: $post->content);
-            $description = rtrim(mb_substr($description, 0, 150), " \t\n\r\0\x0B.,") . '...';
+            $description = rtrim(mb_substr($description, 0, 150), " \t\n\r\0\x0B.,");
         }
 
         $message = new DiscordMessage();
 
         $message->title($post->get('meta.og:title') ?: $post->title)
         ->description($description)
-        ->image($post->get('image.src') ? App::url()->getStatic($post->get('image.src'), [], 0):null)
+        ->image($post->get('image.src') ? $post->get('image.src'): null)
         ->url(App::url('@blog/id', ['id' => $post->id], 0))
         ->send();
     }

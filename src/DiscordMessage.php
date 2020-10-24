@@ -13,9 +13,9 @@ use GreenCheap\Application as App;
  */
 class DiscordMessage
 {
-    const COLOR_SUCCESS = '#0B6623';
-    const COLOR_WARNING = '#FD6A02';
-    const COLOR_ERROR = '#ED2939';
+    const COLOR_SUCCESS = 7921272;
+    const COLOR_WARNING = 14592888;
+    const COLOR_ERROR = 14579832;
 
     /**
      * @var string
@@ -35,7 +35,7 @@ class DiscordMessage
     /**
      * @var string
      */
-    protected string $image;
+    protected string $image = '';
 
     /**
      * @var string
@@ -104,10 +104,9 @@ class DiscordMessage
      * @param $image
      * @return $this
      */
-    public function image($image = null): self
+    public function image($image): self
     {
         $this->image = $image;
-
         return $this;
     }
 
@@ -164,48 +163,46 @@ class DiscordMessage
     }
 
     /**
-     * @return array|\array[][]
+     * Client
      */
-    public function toArray(): array
+    public function send()
     {
-        $data = [
-            'title' => $this->title,
-            'type' => 'rich',
-            'url' => $this->url ?? null,
-            'description' => $this->description,
-            'color' => hexdec($this->color),
-            'footer' => [
-                'text' => $this->footer ?? null,
-            ],
-            'timestamp' => $this->timestamp,
+        $module = App::module('discord');
+
+        if(!$module->get('config.webhook_uri')){
+            return App::abort(404 , __('Not Found Discord WebHook Uri'));
+        }
+
+        $hookObject = [
+            'embeds' => [
+                [
+                    'title' => $this->title,
+                    'type' => 'rich',
+                    'description' => $this->description,
+                    'timestamp' => $this->timestamp,
+                    'color' => $this->color,
+                ]
+            ]
         ];
 
         if($this->image){
-            $data['image'] = [
-                'url' => $this->image
+            $hookObject['embeds'][0]['image'] = [
+                'url' => App::url()->getStatic($this->image , [] , false)
             ];
         }
 
-        return [
-            'embeds' => $data,
-        ];
-    }
-
-    /**
-     * Client
-     */
-    public function send() :void
-    {
-        try {
-            $module = App::module('discord');
-            if(!$module->get('config.webhook_uri')){
-                throw new \Exception('Not Found WebHook Uri');
-            }
-            (new Client())->post($module->get('config.webhook_uri'), [
-                RequestOptions::JSON => $this->toArray(),
-            ]);
-        } catch (\Exception $e) {
-            
+        if($this->url){
+            $hookObject['embeds'][0]['url'] = $this->url;
         }
+
+        if($this->footer){
+            $hookObject['embeds'][0]['footer'] = [
+                'text' => $this->footer,
+            ];
+        }
+
+        (new Client())->post($module->get('config.webhook_uri'), [
+            RequestOptions::JSON => $hookObject,
+        ]);
     }
 }
