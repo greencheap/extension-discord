@@ -2,7 +2,6 @@
 
 namespace GreenCheap\Discord;
 
-use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GreenCheap\Application as App;
@@ -58,9 +57,9 @@ class DiscordMessage
     public function __construct()
     {
         $this->color = self::COLOR_SUCCESS;
-        $this->timestamp(Carbon::now());
+        $datetime = new \DateTime();
+        $this->timestamp($datetime);
         $this->footer('GreenCheap CMS');
-
     }
 
     /**
@@ -111,13 +110,12 @@ class DiscordMessage
     }
 
     /**
-     * @param Carbon $carbon
+     * @param $datetime
      * @return $this
      */
-    public function timestamp(Carbon $carbon): self
+    public function timestamp(\DateTime $datetime): self
     {
-        $this->timestamp = $carbon->toIso8601String();
-
+        $this->timestamp = $datetime->format(\DateTimeInterface::ISO8601);
         return $this;
     }
 

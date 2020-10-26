@@ -1,15 +1,15 @@
 {
     "name": "greencheap/discord",
     "type": "greencheap-extension",
-    "version": "1.0.2",
+    "version": "1.0.2.1",
     "title": "Discord",
     "description": "Discord Webhook + Discord API",
     "license": "MIT",
     "authors": [
         {
             "name": "GreenCheap",
-            "email": "info@greencheap.net",
-            "homepage": "http://greencheap.net"
+            "email": "support@greencheap.net",
+            "homepage": "https://greencheap.net"
         }
     ],
     "extra": {
@@ -21,7 +21,6 @@
         "exclude": ["node_modules", "!/app"]
     },
     "require": {
-        "guzzlehttp/guzzle":"~7.2.0",
-        "nesbot/carbon": "~2.41.3"
+        "guzzlehttp/guzzle":"~7.2.0"
     }
 }

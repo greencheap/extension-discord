@@ -44,7 +44,7 @@ class BlogListener implements EventSubscriberInterface
 
         $message->title($post->get('meta.og:title') ?: $post->title)
         ->description($description)
-        ->image($post->get('image.src') ? $post->get('image.src'): null)
+        ->image($post->get('image.src') ? $post->get('image.src'): false)
         ->url(App::url('@blog/id', ['id' => $post->id], 0))
         ->send();
     }

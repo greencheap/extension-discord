@@ -3,10 +3,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 2.0.1 - 2020-10-24
-### Fix
-- Added BrainEvent, DocsEvent
+## 1.0.2.1 - 2020-10-26
 
-## 2.0.1 - 2020-10-15
+### Removed
+- Carbon's package
+
 ### Fix
-- fix: Image Value Null Exception
+- Image Value Null Exception
+- fixed iso string datetime 
+
+### Added
+- Added BrainEvent, DocsEvent
+- Added uninstall config parameter on scripts.php
